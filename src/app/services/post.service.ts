@@ -3,7 +3,6 @@ import {Post} from "../models/post";
 import {HttpClient} from "@angular/common/http";
 import {apiBaseUrl} from "../core/constants/api";
 import {PostComment, PostCommentsResponse} from "../models/comment";
-import {storageKeys} from "../core/constants/localstorage";
 
 @Injectable({
     providedIn: 'root'
@@ -23,8 +22,6 @@ export class PostService {
     }
 
     public createComment(postId: number, text: string) {
-        return this.httpClient.post<PostComment>(`${this.apiUrl}/${postId}/comments`, { text }, {
-            headers: {'Authorization': `Bearer ${localStorage.getItem(storageKeys.accessTokenKey)}`}
-        })
+        return this.httpClient.post<PostComment>(`${this.apiUrl}/${postId}/comments`, { text })
     }
 }
