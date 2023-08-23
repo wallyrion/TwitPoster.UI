@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
+import {CurrentUser} from "../../services/current-user.service";
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
+import {storageKeys} from "../../core/constants/localstorage";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +14,13 @@ import {AuthService} from "../../services/auth.service";
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private readonly authService: AuthService) { }
+  constructor(
+      private readonly fb: FormBuilder,
+      private readonly router: Router,
+      private readonly authService: AuthService,
+      private readonly userService: UserService,
+      private readonly currentUserService: CurrentUser) {
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -29,6 +39,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginValues)
         .subscribe(res => {
           console.log(res)
+
+          localStorage.setItem(storageKeys.accessTokenKey, res.accessToken)
+          this.userService.getCurrentUser().subscribe(currentUser => {
+            this.currentUserService.me = currentUser;
+            this.router.navigate(['/'])
+          })
         })
   }
 }

@@ -5,5 +5,7 @@
     <a mat-button routerLink="/about">About</a>
     <a mat-button routerLink="/contact">Contact</a>
     <span>|</span>
-    <a mat-button routerLink="/login">Login</a>
+
+    <a *ngIf="currentUser.me" mat-button routerLink="/profile">Hello, {{currentUser.me.firstName}}</a>
+    <a *ngIf="!currentUser.me" mat-button routerLink="/login">Login</a>
 </mat-toolbar>
