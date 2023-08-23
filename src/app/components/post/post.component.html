@@ -16,7 +16,7 @@
   </mat-card-actions>
 
   <mat-card-footer>
-    <app-post-comments *ngIf="showComments" [postId]="post.id"></app-post-comments>
+    <app-post-comments *ngIf="showComments" [postId]="post.id" (commentsNumberChanged)="updateCommentsNumber($event)"></app-post-comments>
   </mat-card-footer>
 
 </mat-card>

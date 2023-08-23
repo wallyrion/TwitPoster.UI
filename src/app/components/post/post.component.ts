@@ -10,4 +10,8 @@ export class PostComponent {
     @Input() public post!: Post;
 
     showComments: boolean = false;
+
+    updateCommentsNumber(count: number) {
+        this.post = {...this.post, commentsCount: count}
+    }
 }

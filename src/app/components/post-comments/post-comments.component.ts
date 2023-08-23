@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PostService} from "../../services/post.service";
 import {PostCommentsResponse} from "../../models/comment";
-import {Observable} from "rxjs";
+import {Observable, switchMap, tap} from "rxjs";
 
 @Component({
     selector: 'app-post-comments',
@@ -10,6 +10,7 @@ import {Observable} from "rxjs";
 })
 export class PostCommentsComponent implements OnInit {
     @Input() public postId!: number;
+    @Output() public commentsNumberChanged = new EventEmitter<number>();
     public newCommentText: string = '';
     public comments$: Observable<PostCommentsResponse> | undefined;
 
@@ -17,8 +18,16 @@ export class PostCommentsComponent implements OnInit {
 
     }
 
-
     ngOnInit(): void {
         this.comments$ = this.postService.getComments(this.postId);
+    }
+
+    createComment() {
+        const getComments$ = this.postService.getComments(this.postId)
+            .pipe(tap(res => this.commentsNumberChanged.next(res.totalCount)));
+
+        this.comments$ = this.postService.createComment(this.postId, this.newCommentText)
+            .pipe(switchMap(_ => getComments$))
+
     }
 }
