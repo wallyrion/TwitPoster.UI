@@ -15,6 +15,9 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
 import { TwitpostsComponent } from './components/twitposts/twitposts.component';
 import {NgOptimizedImage} from "@angular/common";
+import {HttpClientModule} from "@angular/common/http";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import {NgOptimizedImage} from "@angular/common";
     PostComponent,
     PostCommentComponent,
     TwitpostsComponent,
+    HeaderComponent,
   ],
   imports: [
     MatButtonModule,
@@ -35,6 +39,8 @@ import {NgOptimizedImage} from "@angular/common";
     MatIconModule,
     MatBottomSheetModule,
     NgOptimizedImage,
+    HttpClientModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
