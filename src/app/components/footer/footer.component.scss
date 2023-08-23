@@ -1,0 +1,9 @@
+mat-toolbar {
+  position: relative; /* or 'fixed' if you want it to always stick to the bottom of the viewport */
+  bottom: 0;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

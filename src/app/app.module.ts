@@ -9,13 +9,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
 import { TwitpostsComponent } from './components/twitposts/twitposts.component';
 import {NgOptimizedImage} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,9 @@ import {HttpClientModule} from "@angular/common/http";
     PostComponent,
     PostCommentComponent,
     TwitpostsComponent,
+    HeaderComponent,
+    LoginComponent,
+    FooterComponent,
   ],
   imports: [
     MatButtonModule,
@@ -36,7 +43,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatIconModule,
     MatBottomSheetModule,
     NgOptimizedImage,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
