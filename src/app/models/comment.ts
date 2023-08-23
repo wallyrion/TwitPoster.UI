@@ -13,3 +13,9 @@ export interface PostComment {
   UpdatedAt?: Date;
   author: Author;
 }
+
+
+export interface PostCommentsResponse {
+  totalCount: number;
+  items: PostComment[]
+}

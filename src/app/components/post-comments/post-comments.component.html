@@ -1,0 +1,10 @@
+<mat-card class="comments" >
+    <app-post-comment *ngFor="let comment of (comments$ | async)?.items" [comment]="comment"></app-post-comment>
+
+    <mat-form-field class="comment-input" style="width: 100%;">
+        <textarea matInput [(ngModel)]="newCommentText" placeholder="Add a comment..." rows="3"></textarea>
+        <button mat-icon-button matSuffix >
+            <mat-icon>send</mat-icon>
+        </button>
+    </mat-form-field>
+</mat-card>
