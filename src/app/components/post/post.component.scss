@@ -4,3 +4,7 @@
   border-radius: 25px;  /* Circular Image */
   object-fit: cover;    /* Ensure the image covers the dimensions without distortion */
 }
+
+.post-actions {
+  justify-content: space-between;
+}
