@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Post} from "../models/post";
 import {HttpClient} from "@angular/common/http";
+import {apiBaseUrl} from "../core/constants/api";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private readonly apiUrl = 'https://localhost:7267/posts';
+  private readonly apiUrl = `${apiBaseUrl}/posts`;
 
   constructor(private readonly httpClient: HttpClient) {
   }
