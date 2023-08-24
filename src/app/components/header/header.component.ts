@@ -10,12 +10,12 @@ import { UserService } from '../../services/user.service';
 export class HeaderComponent implements OnInit {
   constructor(
     public readonly currentUser: CurrentUser,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.userService
       .getCurrentUser()
-      .subscribe((user) => (this.currentUser.me = user));
+      .subscribe(user => (this.currentUser.me = user));
   }
 }

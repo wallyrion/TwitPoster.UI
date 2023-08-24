@@ -18,14 +18,14 @@ export class PostService {
 
   public getComments(postId: number) {
     return this.httpClient.get<PostCommentsResponse>(
-      `${this.apiUrl}/${postId}/comments`,
+      `${this.apiUrl}/${postId}/comments`
     );
   }
 
   public createComment(postId: number, text: string) {
     return this.httpClient.post<PostComment>(
       `${this.apiUrl}/${postId}/comments`,
-      { text },
+      { text }
     );
   }
 }

@@ -23,7 +23,7 @@ export class PostCommentsComponent implements OnInit {
   createComment() {
     const getComments$ = this.postService
       .getComments(this.postId)
-      .pipe(tap((res) => this.commentsNumberChanged.next(res.totalCount)));
+      .pipe(tap(res => this.commentsNumberChanged.next(res.totalCount)));
 
     this.comments$ = this.postService
       .createComment(this.postId, this.newCommentText)

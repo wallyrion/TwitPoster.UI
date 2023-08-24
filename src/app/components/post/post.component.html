@@ -1,15 +1,14 @@
 <mat-card>
   <mat-card-header>
     <img
-            mat-card-avatar
-            ngSrc="assets/images/profile.png"
-            class="author-photo"
-            alt="profile image"
-            height="256"
-            width="256"
-    />
+      mat-card-avatar
+      ngSrc="assets/images/profile.png"
+      class="author-photo"
+      alt="profile image"
+      height="256"
+      width="256" />
     <mat-card-title
-    >{{ post.authorFirstName }} {{ post.authorLastName }}</mat-card-title
+      >{{ post.authorFirstName }} {{ post.authorLastName }}</mat-card-title
     >
     <mat-card-subtitle>{{ post.createdAt | date: 'medium' }}</mat-card-subtitle>
   </mat-card-header>
@@ -19,8 +18,9 @@
   <mat-card-actions class="post-actions">
     <button mat-button>
       <mat-icon
-              [svgIcon]="post.isLikedByCurrentUser ? 'thumbed-up' : 'thumb-up'"
-      ></mat-icon>
+        [svgIcon]="
+          post.isLikedByCurrentUser ? 'thumbed-up' : 'thumb-up'
+        "></mat-icon>
       ({{ post.likesCount }})
     </button>
     <button (click)="showComments = !showComments" mat-button>
@@ -30,9 +30,10 @@
 
   <mat-card-footer>
     <app-post-comments
-            *ngIf="showComments"
-            [postId]="post.id"
-            (commentsNumberChanged)="updateCommentsNumber($event)"
-    ></app-post-comments>
+      *ngIf="showComments"
+      [postId]="post.id"
+      (commentsNumberChanged)="
+        updateCommentsNumber($event)
+      "></app-post-comments>
   </mat-card-footer>
 </mat-card>

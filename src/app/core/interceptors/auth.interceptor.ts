@@ -12,10 +12,10 @@ import { storageKeys } from '../constants/localstorage';
 export class AuthInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token: string | null = localStorage.getItem(
-      storageKeys.accessTokenKey,
+      storageKeys.accessTokenKey
     ); // assuming token is stored in localStorage
 
     if (token) {

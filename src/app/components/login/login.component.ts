@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private readonly router: Router,
     private readonly authService: AuthService,
     private readonly userService: UserService,
-    private readonly currentUserService: CurrentUser,
+    private readonly currentUserService: CurrentUser
   ) {}
 
   ngOnInit(): void {
@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
 
     const loginValues = this.loginForm.value;
 
-    this.authService.login(loginValues).subscribe((res) => {
+    this.authService.login(loginValues).subscribe(res => {
       console.log(res);
 
       localStorage.setItem(storageKeys.accessTokenKey, res.accessToken);
-      this.userService.getCurrentUser().subscribe((currentUser) => {
+      this.userService.getCurrentUser().subscribe(currentUser => {
         this.currentUserService.me = currentUser;
         this.router.navigate(['/']);
       });

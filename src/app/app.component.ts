@@ -12,22 +12,22 @@ export class AppComponent implements OnInit {
 
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
+    private domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     this.matIconRegistry.addSvgIcon(
       'thumb-up',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/icons/thumb-up.svg',
-      ),
+        'assets/icons/thumb-up.svg'
+      )
     );
 
     this.matIconRegistry.addSvgIcon(
       'thumbed-up',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        'assets/icons/thumbed-up.svg',
-      ),
+        'assets/icons/thumbed-up.svg'
+      )
     );
   }
 }
