@@ -20,6 +20,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderComponent,
     LoginComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   imports: [
     MatButtonModule,
