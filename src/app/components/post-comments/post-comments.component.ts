@@ -11,7 +11,7 @@ import {Observable, switchMap, tap} from "rxjs";
 export class PostCommentsComponent implements OnInit {
     @Input() public postId!: number;
     @Output() public commentsNumberChanged = new EventEmitter<number>();
-    public newCommentText: string = '';
+    public newCommentText = '';
     public comments$: Observable<PostCommentsResponse> | undefined;
 
     constructor(private readonly postService: PostService) {
@@ -27,7 +27,7 @@ export class PostCommentsComponent implements OnInit {
             .pipe(tap(res => this.commentsNumberChanged.next(res.totalCount)));
 
         this.comments$ = this.postService.createComment(this.postId, this.newCommentText)
-            .pipe(switchMap(_ => getComments$))
+            .pipe(switchMap(() => getComments$))
 
     }
 }

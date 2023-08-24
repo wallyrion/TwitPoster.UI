@@ -7,5 +7,6 @@ import {PostComment} from "../../models/comment";
   styleUrls: ['./post-comment.component.scss']
 })
 export class PostCommentComponent {
-  @Input() public comment: PostComment = null!;
+  @Input()
+  public comment!: PostComment;
 }

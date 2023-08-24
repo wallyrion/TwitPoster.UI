@@ -9,7 +9,7 @@ import {Post} from "../../models/post";
 export class PostComponent {
     @Input() public post!: Post;
 
-    showComments: boolean = false;
+    showComments = false;
 
     updateCommentsNumber(count: number) {
         this.post = {...this.post, commentsCount: count}

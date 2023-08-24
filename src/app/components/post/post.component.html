@@ -14,7 +14,7 @@
     <button mat-button>
       <mat-icon [svgIcon]="post.isLikedByCurrentUser ? 'thumbed-up' : 'thumb-up'"></mat-icon>  ({{ post.likesCount }})
     </button>
-    <a (click)="showComments = !showComments" mat-button>Comments ({{ post.commentsCount }})</a>
+    <button (click)="showComments = !showComments" mat-button>Comments ({{ post.commentsCount }})</button>
   </mat-card-actions>
 
   <mat-card-footer>
