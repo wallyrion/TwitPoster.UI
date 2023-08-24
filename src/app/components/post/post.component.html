@@ -12,7 +12,7 @@
   </mat-card-content>
   <mat-card-actions class="post-actions">
     <button mat-button>
-      <mat-icon>thumb_up</mat-icon>  ({{ post.likesCount }})
+      <mat-icon [svgIcon]="post.isLikedByCurrentUser ? 'thumbed-up' : 'thumb-up'"></mat-icon>  ({{ post.likesCount }})
     </button>
     <a (click)="showComments = !showComments" mat-button>Comments ({{ post.commentsCount }})</a>
   </mat-card-actions>
