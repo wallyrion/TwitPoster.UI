@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -17,6 +16,7 @@ import {TwitpostsComponent} from './components/twitposts/twitposts.component';
 import {NgOptimizedImage} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {NotFoundComponent} from './components/not-found/not-found.component';
 import {HeaderComponent} from './components/header/header.component';
 import {LoginComponent} from './components/login/login.component';
 import {FooterComponent} from './components/footer/footer.component';
@@ -33,6 +33,7 @@ import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
         LoginComponent,
         FooterComponent,
         PostCommentsComponent,
+        NotFoundComponent,
     ],
     imports: [
         MatButtonModule,
