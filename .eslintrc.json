@@ -20,6 +20,8 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "prettier/prettier": "error",
+
         "@angular-eslint/directive-selector": [
           "error",
           {

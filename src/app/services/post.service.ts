@@ -22,6 +22,6 @@ export class PostService {
     }
 
     public createComment(postId: number, text: string) {
-        return this.httpClient.post<PostComment>(`${this.apiUrl}/${postId}/comments`, { text })
+        return this.httpClient.post<PostComment>(`${this.apiUrl}/${postId}/comments`, {text})
     }
 }
