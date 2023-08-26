@@ -1,7 +1,18 @@
 <mat-card class="comments">
-  <app-post-comment
-    *ngFor="let comment of (comments$ | async)?.items"
-    [comment]="comment"></app-post-comment>
+  <div
+    class="comments-container"
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [scrollWindow]="false"
+    [alwaysCallback]="true"
+    (scrolled)="onScroll()">
+    <div>
+      <app-post-comment
+        class="post-comment"
+        *ngFor="let comment of comments"
+        [comment]="comment"></app-post-comment>
+    </div>
+  </div>
 
   <mat-form-field class="comment-input" style="width: 100%">
     <textarea

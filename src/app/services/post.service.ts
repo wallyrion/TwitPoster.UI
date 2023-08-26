@@ -16,9 +16,9 @@ export class PostService {
     return this.httpClient.get<Post[]>(this.apiUrl);
   }
 
-  public getComments(postId: number) {
+  public getComments(postId: number, pageSize: number, pageNumber: number) {
     return this.httpClient.get<PostCommentsResponse>(
-      `${this.apiUrl}/${postId}/comments`
+      `${this.apiUrl}/${postId}/comments?pageSize=${pageSize}&pageNumber=${pageNumber}`
     );
   }
 

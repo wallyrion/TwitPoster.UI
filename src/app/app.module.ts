@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostCommentsComponent } from './components/post-comments/post-comments.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     HttpClientModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

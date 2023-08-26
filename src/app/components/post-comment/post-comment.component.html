@@ -2,7 +2,7 @@
   <mat-card-header>
     <img
       mat-card-avatar
-      src="../../../assets/images/profile.png"
+      [src]="(authorImgUrl$ | async) ?? '../../../assets/images/profile.png'"
       alt="{{ comment.author.fullName }}" />
     <mat-card-title>{{ comment.author.fullName }}</mat-card-title>
     <mat-card-subtitle>{{
