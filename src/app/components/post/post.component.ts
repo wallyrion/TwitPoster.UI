@@ -1,18 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
+  public authorImageUrl$: Observable<string | undefined> | undefined;
   @Input() public post!: Post;
 
   showComments = false;
 
-  constructor(private readonly postService: PostService) {}
+  constructor(
+    private readonly postService: PostService,
+    private readonly userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    this.authorImageUrl$ = this.userService.getProfileImage(this.post.authorId);
+  }
 
   updateCommentsNumber(count: number) {
     this.post = { ...this.post, commentsCount: count };

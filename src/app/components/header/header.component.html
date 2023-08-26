@@ -6,8 +6,15 @@
   <a mat-button routerLink="/contact">Contact</a>
   <span>|</span>
 
-  <a *ngIf="currentUser.me" mat-button routerLink="/profile"
-    >Hello, {{ currentUser.me.firstName }}</a
-  >
+  <ng-container *ngIf="currentUser.me">
+    <a mat-button routerLink="/profile"
+      >Hello, {{ currentUser.me.firstName }}</a
+    >
+    <img
+      class="profile-img"
+      [src]="photoUrl ?? 'assets/images/profile.png'"
+      alt="profile-img" />
+  </ng-container>
+
   <a *ngIf="!currentUser.me" mat-button routerLink="/login">Login</a>
 </mat-toolbar>

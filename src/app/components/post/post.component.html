@@ -1,12 +1,10 @@
 <mat-card>
   <mat-card-header>
     <img
+      [src]="(authorImageUrl$ | async) ?? 'assets/images/profile.png'"
       mat-card-avatar
-      ngSrc="assets/images/profile.png"
       class="author-photo"
-      alt="profile image"
-      height="256"
-      width="256" />
+      alt="profile image" />
     <mat-card-title
       >{{ post.authorFirstName }} {{ post.authorLastName }}</mat-card-title
     >
