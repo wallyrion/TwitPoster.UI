@@ -28,4 +28,12 @@ export class PostService {
       { text }
     );
   }
+
+  public likePost(postId: number) {
+    return this.httpClient.put<number>(`${this.apiUrl}/${postId}/like`, {});
+  }
+
+  public unlikePost(postId: number) {
+    return this.httpClient.put<number>(`${this.apiUrl}/${postId}/unlike`, {});
+  }
 }

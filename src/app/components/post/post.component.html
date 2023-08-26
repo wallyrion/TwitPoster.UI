@@ -16,7 +16,7 @@
     <p>{{ post.body }}</p>
   </mat-card-content>
   <mat-card-actions class="post-actions">
-    <button mat-button>
+    <button mat-button (click)="likeOrUnlike()">
       <mat-icon
         [svgIcon]="
           post.isLikedByCurrentUser ? 'thumbed-up' : 'thumb-up'
