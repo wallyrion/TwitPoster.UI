@@ -1,10 +1,8 @@
-
 export interface Author {
   id: number;
   fullName: string;
   Email: string;
 }
-
 
 export interface PostComment {
   id: number;
@@ -14,8 +12,7 @@ export interface PostComment {
   author: Author;
 }
 
-
 export interface PostCommentsResponse {
   totalCount: number;
-  items: PostComment[]
+  items: PostComment[];
 }

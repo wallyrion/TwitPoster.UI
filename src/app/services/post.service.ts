@@ -1,27 +1,39 @@
-import {Injectable} from '@angular/core';
-import {Post} from "../models/post";
-import {HttpClient} from "@angular/common/http";
-import {apiBaseUrl} from "../core/constants/api";
-import {PostComment, PostCommentsResponse} from "../models/comment";
+import { Injectable } from '@angular/core';
+import { Post } from '../models/post';
+import { HttpClient } from '@angular/common/http';
+import { apiBaseUrl } from '../core/constants/api';
+import { PostComment, PostCommentsResponse } from '../models/comment';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
-    private readonly apiUrl = `${apiBaseUrl}/posts`;
+  private readonly apiUrl = `${apiBaseUrl}/posts`;
 
-    constructor(private readonly httpClient: HttpClient) {
-    }
+  constructor(private readonly httpClient: HttpClient) {}
 
-    public getPosts() {
-        return this.httpClient.get<Post[]>(this.apiUrl);
-    }
+  public getPosts() {
+    return this.httpClient.get<Post[]>(this.apiUrl);
+  }
 
-    public getComments(postId: number) {
-        return this.httpClient.get<PostCommentsResponse>(`${this.apiUrl}/${postId}/comments`)
-    }
+  public getComments(postId: number) {
+    return this.httpClient.get<PostCommentsResponse>(
+      `${this.apiUrl}/${postId}/comments`
+    );
+  }
 
-    public createComment(postId: number, text: string) {
-        return this.httpClient.post<PostComment>(`${this.apiUrl}/${postId}/comments`, { text })
-    }
+  public createComment(postId: number, text: string) {
+    return this.httpClient.post<PostComment>(
+      `${this.apiUrl}/${postId}/comments`,
+      { text }
+    );
+  }
+
+  public likePost(postId: number) {
+    return this.httpClient.put<number>(`${this.apiUrl}/${postId}/like`, {});
+  }
+
+  public unlikePost(postId: number) {
+    return this.httpClient.put<number>(`${this.apiUrl}/${postId}/unlike`, {});
+  }
 }
