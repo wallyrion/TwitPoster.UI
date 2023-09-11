@@ -1,0 +1,10 @@
+.post-comment {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.comments-container {
+  max-height: 20rem;
+  overflow: scroll;
+  overflow-x: auto;
+}

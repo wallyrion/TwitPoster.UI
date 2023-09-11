@@ -1,36 +1,44 @@
-import {Component, Input} from '@angular/core';
-import {Post} from "../../models/post";
-import {PostComment} from "../../models/comment";
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../../models/post';
+import { PostService } from '../../services/post.service';
+import { UserService } from '../../services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-post',
-    templateUrl: './post.component.html',
-    styleUrls: ['./post.component.scss']
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss'],
 })
-export class PostComponent {
-    @Input() public post!: Post;
-    public comments: PostComment[] = [
-        {
-            id: 1,
-            text: 'This is a fantastic post! Thank you for sharing',
-            author: {
-                id: 12,
-                fullName: 'Alice Johnson',
-                Email: 'alice.j@email.com'
-            },
-            createdAt: new Date('2023-08-10T14:20:00')
-        },
-        {
-            id: 2,
-            text: 'I learned a lot from this. Keep it up!',
-            author: {
-                id: 4,
-                fullName: 'Bob Smith',
-                Email: 'bob.b@email.com'
-            },
-            createdAt: new Date('2023-08-10T14:20:00')
-        }
-    ]
-    showComments: boolean = false;
-    newCommentText: string = '';
+export class PostComponent implements OnInit {
+  public authorImageUrl$: Observable<string | undefined> | undefined;
+  @Input() public post!: Post;
+
+  showComments = false;
+
+  constructor(
+    private readonly postService: PostService,
+    private readonly userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    this.authorImageUrl$ = this.userService.getProfileImage(this.post.authorId);
+  }
+
+  updateCommentsNumber(count: number) {
+    this.post = { ...this.post, commentsCount: count };
+  }
+
+  likeOrUnlike() {
+    const action = this.post.isLikedByCurrentUser
+      ? this.postService.unlikePost(this.post.id)
+      : this.postService.likePost(this.post.id);
+
+    action.subscribe(likesCount => {
+      this.post = {
+        ...this.post,
+        likesCount: likesCount,
+        isLikedByCurrentUser: !this.post.isLikedByCurrentUser,
+      };
+    });
+  }
 }
