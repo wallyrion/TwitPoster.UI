@@ -1,9 +1,20 @@
 <mat-toolbar color="primary">
-    <span>Twitposter</span>
-    <div class="spacer"></div>
-    <a mat-button routerLink="/twitposts">Home</a>
-    <a mat-button routerLink="/about">About</a>
-    <a mat-button routerLink="/contact">Contact</a>
-    <span>|</span>
-    <a mat-button routerLink="/login">Login</a>
+  <span>Twitposter</span>
+  <div class="spacer"></div>
+  <a mat-button routerLink="/twitposts">Home</a>
+  <a mat-button routerLink="/about">About</a>
+  <a mat-button routerLink="/contact">Contact</a>
+  <span>|</span>
+
+  <ng-container *ngIf="currentUser.me">
+    <a mat-button routerLink="/profile"
+      >Hello, {{ currentUser.me.firstName }}</a
+    >
+    <img
+      class="profile-img"
+      [src]="photoUrl ?? 'assets/images/profile.png'"
+      alt="profile-img" />
+  </ng-container>
+
+  <a *ngIf="!currentUser.me" mat-button routerLink="/login">Login</a>
 </mat-toolbar>
