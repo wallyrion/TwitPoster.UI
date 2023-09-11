@@ -32,6 +32,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "https://wallyrion.github.io/TwitPoster.UI/",
+
               "budgets": [
                 {
                   "type": "initial",
@@ -47,6 +49,8 @@
               "outputHashing": "all"
             },
             "development": {
+              "baseHref": "https://wallyrion.github.io/TwitPoster.UI/",
+
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
