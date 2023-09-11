@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://twitposter.azurewebsites.net/',
+  apiUrl: 'https://twitposter.azurewebsites.net',
 };
