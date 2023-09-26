@@ -5,8 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/twitposts', pathMatch: 'full' },
-  { path: 'twitposts', component: TwitpostsComponent },
+  { path: '', component: TwitpostsComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent },
 ];
