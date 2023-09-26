@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages using Jekyll
+name: Build & Deploy to GitHub Pages using Jekyll
 
 on:
   pull_request:
