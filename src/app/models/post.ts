@@ -4,6 +4,7 @@ export interface Post {
   createdAt: Date;
   authorFirstName: string;
   authorLastName: string;
+  authorPhotoUrl: string;
   authorId: number;
   likesCount: number;
   commentsCount: number;
