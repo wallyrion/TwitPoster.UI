@@ -2,7 +2,7 @@ export interface Author {
   id: number;
   fullName: string;
   email: string;
-  photoUrl: string;
+  photoUrl?: string;
 }
 
 export interface PostComment {
