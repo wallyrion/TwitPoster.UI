@@ -1,8 +1,6 @@
-name: Build & Deploy to GitHub Pages using Jekyll
+name: Build & Deploy to GitHub Pages
 
 on:
-  pull_request:
-    branches: [ "main"]
   push:
     branches: ["main"]
 
@@ -47,12 +45,12 @@ jobs:
         with:
           source: ./docs
           destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
 
   # Deployment job
   deploy:
-    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
