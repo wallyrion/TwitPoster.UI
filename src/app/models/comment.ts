@@ -3,6 +3,7 @@ export interface Author {
   fullName: string;
   email: string;
   photoUrl?: string;
+  thumbnailPhotoUrl?: string;
 }
 
 export interface PostComment {
