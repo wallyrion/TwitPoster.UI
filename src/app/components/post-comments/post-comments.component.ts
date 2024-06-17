@@ -10,7 +10,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 })
 export class PostCommentsComponent implements OnInit {
   private readonly pageSize = 5;
-  private totalCount: number | undefined;
+  private totalCount = 0;
   private getComments$!: Observable<PostCommentsResponse>;
 
   private page = 1;
@@ -45,7 +45,7 @@ export class PostCommentsComponent implements OnInit {
   }
 
   onScroll(): void {
-    const totalPages = Math.ceil(this.totalCount! / 5);
+    const totalPages = Math.ceil(this.totalCount / 5);
 
     if (totalPages == this.page) {
       return;
