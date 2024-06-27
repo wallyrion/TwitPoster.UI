@@ -8,6 +8,7 @@ updates:
       angular:
         patterns:
           - "@angular/*"
+          - "@angular-devkit/*"
       typescript-eslint:
          patterns:
            - "@typescript-eslint/*"
