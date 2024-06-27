@@ -8,6 +8,9 @@ updates:
       angular:
         patterns:
           - "@angular/*"
+      typescript-eslint:
+         patterns:
+           - "@typescript-eslint/*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
