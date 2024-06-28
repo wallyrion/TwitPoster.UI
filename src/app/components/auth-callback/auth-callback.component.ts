@@ -28,7 +28,7 @@ export class AuthCallbackComponent implements OnInit {
         this.userService.getCurrentUser().subscribe(currentUser => {
           this.currentUserService.me = currentUser;
           this.authService.currentUser = currentUser;
-          this.router.navigate(['/']).then(_ => {});
+          this.router.navigate(['/']).then(() => {});
         });
       }
     });
