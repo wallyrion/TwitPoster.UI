@@ -32,7 +32,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "http://twitposter.xyz/",
+              "baseHref": "https://twitposter.xyz/",
 
               "budgets": [
                 {
