@@ -14,7 +14,31 @@
       class="profile-img"
       [src]="photoUrl ?? 'assets/images/profile.png'"
       alt="profile-img" />
+
+    <button mat-icon-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
   </ng-container>
 
   <a *ngIf="!currentUser.me" mat-button routerLink="/login">Login</a>
+
+  <div *ngIf="!currentUser.me" id="google-signin-container">
+    <div
+      id="g_id_onload"
+      [attr.data-client_id]="googleClientId"
+      data-context="signin"
+      data-ux_mode="popup"
+      [attr.data-login_uri]="googleSignInUrl"
+      data-auto_select="false"
+      data-itp_support="true"></div>
+
+    <div
+      class="g_id_signin"
+      data-type="standard"
+      data-shape="rectangular"
+      data-theme="filled_black"
+      data-text="signin_with"
+      data-size="small"
+      data-logo_alignment="left"></div>
+  </div>
 </mat-toolbar>

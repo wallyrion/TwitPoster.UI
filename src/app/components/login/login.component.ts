@@ -5,7 +5,6 @@ import { CurrentUser } from '../../services/current-user.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { storageKeys } from '../../core/constants/localstorage';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

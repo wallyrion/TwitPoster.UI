@@ -14,7 +14,11 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
 import { TwitpostsComponent } from './components/twitposts/twitposts.component';
 import { NgOptimizedImage } from '@angular/common';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,34 +26,42 @@ import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostCommentsComponent } from './components/post-comments/post-comments.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 
-@NgModule({ declarations: [
-        AppComponent,
-        PostComponent,
-        PostCommentComponent,
-        TwitpostsComponent,
-        HeaderComponent,
-        LoginComponent,
-        FooterComponent,
-        PostCommentsComponent,
-        NotFoundComponent,
-    ],
-    bootstrap: [AppComponent], imports: [MatButtonModule,
-        MatInputModule,
-        BrowserModule,
-        AppRoutingModule,
-        MatCardModule,
-        BrowserAnimationsModule,
-        MatExpansionModule,
-        FormsModule,
-        MatIconModule,
-        MatBottomSheetModule,
-        NgOptimizedImage,
-        MatToolbarModule,
-        ReactiveFormsModule,
-        InfiniteScrollModule], providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [
+    AuthCallbackComponent,
+    AppComponent,
+    PostComponent,
+    PostCommentComponent,
+    TwitpostsComponent,
+    HeaderComponent,
+    LoginComponent,
+    FooterComponent,
+    PostCommentsComponent,
+    NotFoundComponent,
+  ],
+  bootstrap: [AppComponent],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    FormsModule,
+    MatIconModule,
+    MatBottomSheetModule,
+    NgOptimizedImage,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}

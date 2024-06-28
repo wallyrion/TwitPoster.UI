@@ -11,7 +11,7 @@ export class CurrentUser {
     return this._me;
   }
 
-  public set me(currentUser: Account) {
+  public set me(currentUser: Account | undefined) {
     this._me = currentUser;
   }
 }
