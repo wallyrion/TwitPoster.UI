@@ -32,7 +32,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "https://twitposter.xyz/",
+              "baseHref": "https://wallyrion.github.io/TwitPoster.UI/",
 
               "budgets": [
                 {
