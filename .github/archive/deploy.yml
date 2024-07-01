@@ -1,8 +1,8 @@
-name: Deploy to gh-pages
+name: Build & Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main",]
+    branches: ["main", "bugs/try-to-fix-environment"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,8 +37,25 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Github pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          npm run ng -- deploy --repo="https://github.com/wallyrion/TwitPoster.UI.git" --cname=twitposter.xyz --name=wallyrion --email=kornienko1296@gmail.com
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
