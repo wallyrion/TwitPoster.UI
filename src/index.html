@@ -26,19 +26,26 @@
       // the correct url will be waiting in the browser's history for
       // the single page app to route accordingly.
       (function (l) {
+        console.log('Initial URL:', l.href);
+        console.log('Initial Search String:', l.search);
+
         if (l.search[1] === '/') {
+          console.log('Redirect detected in the query string.');
+
           var decoded = l.search
-            .slice(1)
-            .split('&')
+            .slice(1) // Remove the leading `?`
+            .split('&') // Split by `&`
             .map(function (s) {
-              return s.replace(/~and~/g, '&');
+              return s.replace(/~and~/g, '&'); // Replace `~and~` with `&`
             })
-            .join('?');
-          window.history.replaceState(
-            null,
-            null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          );
+            .join('?'); // Join back with `?`
+
+          console.log('Decoded Search String:', decoded);
+
+          var newUrl = l.pathname.slice(0, -1) + decoded + l.hash;
+          console.log('New URL:', newUrl);
+
+          window.history.replaceState(null, null, newUrl);
         }
       })(window.location);
     </script>
