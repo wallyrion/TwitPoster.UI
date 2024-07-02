@@ -5,6 +5,8 @@ export interface Account {
   email: string;
   role: UserRole;
   createdAt: Date;
+  thumbnailPhotoUrl: string | undefined;
+  photoUrl: string | undefined;
 }
 
 export enum UserRole {

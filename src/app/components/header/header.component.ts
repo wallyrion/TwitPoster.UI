@@ -25,9 +25,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe(user => {
       this.currentUser.me = user;
-      this.userService.getProfileImage(user.id).subscribe(img => {
-        this.photoUrl = img;
-      });
     });
   }
 

@@ -12,7 +12,7 @@
     >
     <img
       class="profile-img"
-      [src]="photoUrl ?? 'assets/images/profile.png'"
+      [src]="currentUser.me.photoUrl ?? 'assets/images/profile.png'"
       alt="profile-img" />
 
     <button mat-icon-button (click)="logout()">
