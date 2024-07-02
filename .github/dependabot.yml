@@ -9,6 +9,7 @@ updates:
         patterns:
           - "@angular/*"
           - "@angular-devkit/*"
+          - "ngx-infinite-scroll"
       typescript-eslint:
          patterns:
            - "@typescript-eslint/*"

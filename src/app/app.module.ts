@@ -26,8 +26,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostCommentsComponent } from './components/post-comments/post-comments.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ import { AuthCallbackComponent } from './components/auth-callback/auth-callback.
     NgOptimizedImage,
     MatToolbarModule,
     ReactiveFormsModule,
-    InfiniteScrollModule,
+    InfiniteScrollDirective,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
