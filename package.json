@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0-alpha.34",
     "@typescript-eslint/parser": "^8.0.0-alpha.34",
     "@typescript-eslint/utils": "^8.0.0-alpha.30",
-    "eslint": "^9.0.0",
+    "eslint": "^9.6.0",
     "angular-cli-ghpages": "^2.0.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
