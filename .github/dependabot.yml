@@ -17,6 +17,7 @@ updates:
       angular-eslint:
         patterns:
           - "@angular-eslint/*"
+          - "@typescript-eslint/utils"
 
   - package-ecosystem: "github-actions"
     directory: "/"
