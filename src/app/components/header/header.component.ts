@@ -16,7 +16,7 @@ import {
 export class HeaderComponent implements OnInit {
   googleClientId = googleClientId;
   googleSignInUrl = `${apiBaseUrl}/auth/google-sso?redirectTo=${clientAppUrl}/auth-callback`;
-  photoUrl: string | undefined;
+
   constructor(
     public readonly currentUser: CurrentUser,
     private readonly userService: UserService

@@ -3,7 +3,7 @@ import { apiBaseUrl } from '../core/constants/api';
 import { HttpClient } from '@angular/common/http';
 import { Account } from '../models/auth';
 import { tap } from 'rxjs';
-import { ConnectionService } from './connection.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +13,13 @@ export class UserService {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly connection: ConnectionService
+    private readonly notificationService: NotificationService
   ) {}
 
   public getCurrentUser() {
     return this.httpClient.get<Account>(`${this.apiUrl}/me`).pipe(
-      tap(res => {
-        console.log('used is initialized');
-        this.connection.initializeHub();
+      tap(_ => {
+        this.notificationService.initializeHub();
       })
     );
   }
