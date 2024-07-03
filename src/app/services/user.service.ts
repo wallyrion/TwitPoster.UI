@@ -18,7 +18,7 @@ export class UserService {
 
   public getCurrentUser() {
     return this.httpClient.get<Account>(`${this.apiUrl}/me`).pipe(
-      tap(_ => {
+      tap(() => {
         this.notificationService.initializeHub();
       })
     );
