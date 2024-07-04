@@ -33,7 +33,7 @@
               {
                 "glob": "**/*",
                 "input": "src/assets",
-                "output": "/"
+                "output": "/assets"
               },
               {
                 "glob": "favicon.ico",

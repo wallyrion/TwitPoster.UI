@@ -18,12 +18,16 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.matIconRegistry.addSvgIcon(
       'thumb-up',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/thumb-up.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/thumb-up.svg'
+      )
     );
 
     this.matIconRegistry.addSvgIcon(
       'thumbed-up',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/thumbed-up.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/thumbed-up.svg'
+      )
     );
   }
 }
