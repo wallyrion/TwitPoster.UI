@@ -16,7 +16,7 @@ export class NotificationService {
     this._hubConnection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
       .withAutomaticReconnect()
-      .withUrl(`${apiBaseUrl}/progress`, {
+      .withUrl(`${apiBaseUrl}/notifications`, {
         headers: {},
         accessTokenFactory: () =>
           localStorage.getItem(storageKeys.accessTokenKey) as string,
@@ -42,6 +42,8 @@ export class NotificationService {
       'SendNotification',
       (type: NotificationType, details: NotificationPayload) => {
         const [message, action] = this.formatNotification(type, details);
+
+        this._hubConnection.invoke('hello');
 
         this.snackBar.open(message, action, {
           horizontalPosition: 'left',
