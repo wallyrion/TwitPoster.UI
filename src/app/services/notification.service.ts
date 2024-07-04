@@ -43,8 +43,6 @@ export class NotificationService {
       (type: NotificationType, details: NotificationPayload) => {
         const [message, action] = this.formatNotification(type, details);
 
-        this._hubConnection.invoke('hello');
-
         this.snackBar.open(message, action, {
           horizontalPosition: 'left',
           verticalPosition: 'bottom',
