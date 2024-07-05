@@ -19,5 +19,5 @@
   </ng-container>
 
   <a *ngIf="!account" mat-button routerLink="/login">Login</a>
-  <div *ngIf="!account" id="google-signin-container"></div>
+  <div *ngIf="!account" #google_signin_container></div>
 </mat-toolbar>

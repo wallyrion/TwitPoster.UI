@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CurrentUser } from '../../services/current-user.service';
 import { storageKeys } from '../../core/constants/localstorage';
 import { googleClientId } from '../../core/constants/api';
@@ -8,12 +8,19 @@ import { Account } from '../../models/auth';
 import { switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+declare global {
+  const google: typeof import('google-one-tap');
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('google_signin_container', { static: false })
+  googleSignInContainer!: ElementRef;
+
   public account: Account | undefined;
   private googleClientId = googleClientId;
 
@@ -25,7 +32,6 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:load')
   onLoad() {
-    // @ts-expect-error
     google.accounts.id.initialize({
       context: 'signin',
       ux_mode: 'popup',
@@ -34,7 +40,6 @@ export class HeaderComponent implements OnInit {
       itp_support: true,
       cancel_on_tap_outside: true,
 
-      // @ts-expect-error
       callback: a => {
         this.authService
           .loginWithGoogle(a.credential)
@@ -43,14 +48,12 @@ export class HeaderComponent implements OnInit {
       },
     });
 
-    // @ts-expect-error
     google.accounts.id.prompt();
 
-    // @ts-expect-error
-    google.accounts.id.renderButton(
-      document.getElementById('google-signin-container'),
-      { theme: 'outline', size: 'large', width: '100%' }
-    );
+    google.accounts.id.renderButton(this.googleSignInContainer.nativeElement, {
+      theme: 'outline',
+      size: 'large',
+    });
   }
 
   ngOnInit(): void {
