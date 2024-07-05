@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CurrentUser } from '../../services/current-user.service';
 import { Router } from '@angular/router';
-import { storageKeys } from '../../core/constants/localstorage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,9 +35,7 @@ export class LoginComponent implements OnInit {
 
     const loginValues = this.loginForm.value;
 
-    this.authService.login(loginValues).subscribe(res => {
-      localStorage.setItem(storageKeys.accessTokenKey, res.accessToken);
-
+    this.authService.login(loginValues).subscribe(() => {
       this.currentUserService.refreshUser().subscribe(() => {
         this.router.navigate(['/']).then(() => {});
       });
