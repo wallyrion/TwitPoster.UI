@@ -6,13 +6,11 @@
   <a mat-button routerLink="/contact">Contact</a>
   <span>|</span>
 
-  <ng-container *ngIf="currentUser.me">
-    <a mat-button routerLink="/profile"
-      >Hello, {{ currentUser.me.firstName }}</a
-    >
+  <ng-container *ngIf="account">
+    <a mat-button routerLink="/profile">Hello, {{ account.firstName }}</a>
     <img
       class="profile-img"
-      [src]="currentUser.me.photoUrl ?? 'assets/images/profile.png'"
+      [src]="account.photoUrl ?? 'assets/images/profile.png'"
       alt="profile-img" />
 
     <button mat-icon-button (click)="logout()">
@@ -20,25 +18,6 @@
     </button>
   </ng-container>
 
-  <a *ngIf="!currentUser.me" mat-button routerLink="/login">Login</a>
-
-  <div *ngIf="!currentUser.me" id="google-signin-container">
-    <div
-      id="g_id_onload"
-      [attr.data-client_id]="googleClientId"
-      data-context="signin"
-      data-ux_mode="popup"
-      [attr.data-login_uri]="googleSignInUrl"
-      data-auto_select="false"
-      data-itp_support="true"></div>
-
-    <div
-      class="g_id_signin"
-      data-type="standard"
-      data-shape="rectangular"
-      data-theme="filled_black"
-      data-text="signin_with"
-      data-size="small"
-      data-logo_alignment="left"></div>
-  </div>
+  <a *ngIf="!account" mat-button routerLink="/login">Login</a>
+  <div *ngIf="!account" #google_signin_container></div>
 </mat-toolbar>
