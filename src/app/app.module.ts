@@ -28,9 +28,17 @@ import { PostCommentsComponent } from './components/post-comments/post-comments.
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerToggle,
+} from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @NgModule({
   declarations: [
+    UserProfileComponent,
     AuthCallbackComponent,
     AppComponent,
     PostComponent,
@@ -58,8 +66,12 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
     MatToolbarModule,
     ReactiveFormsModule,
     InfiniteScrollDirective,
+    MatDatepicker,
+    MatDatepickerToggle,
+    MatDatepickerInput,
   ],
   providers: [
+    provideNativeDateAdapter(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi()),
   ],
