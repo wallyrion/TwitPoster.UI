@@ -12,8 +12,8 @@ import { UpdateUserProfileRequest } from '../models/user-requests';
 export class CurrentUser {
   private readonly apiUrl = `${apiBaseUrl}/users`;
 
-  private currentUserSubject = new ReplaySubject<Account>(1);
-  private currentUser$: Observable<Account> =
+  private currentUserSubject = new ReplaySubject<Account | undefined>(1);
+  private currentUser$: Observable<Account | undefined> =
     this.currentUserSubject.asObservable();
   private isRefreshing = false;
 
@@ -32,7 +32,7 @@ export class CurrentUser {
     this._me = currentUser;
   }
 
-  public refreshUser(): Observable<Account> {
+  public refreshUser(): Observable<Account | undefined> {
     if (this.isRefreshing) {
       return this.currentUser$;
     }
@@ -48,6 +48,8 @@ export class CurrentUser {
           this.isRefreshing = false;
         }),
         catchError(() => {
+          this.currentUserSubject.next(undefined);
+          console.log('error getting user');
           this.isRefreshing = false;
           return of(undefined);
         })
