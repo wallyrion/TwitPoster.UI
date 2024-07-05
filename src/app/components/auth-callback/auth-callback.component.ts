@@ -21,7 +21,8 @@ export class AuthCallbackComponent implements OnInit {
       if (token) {
         localStorage.setItem(storageKeys.accessTokenKey, token);
 
-        this.currentUserService.refreshUser().subscribe(() => {
+        this.currentUserService.refreshUser(true).subscribe(res => {
+          console.log('user successfully initialized', res);
           this.router.navigate(['/']).then(() => {});
         });
       }

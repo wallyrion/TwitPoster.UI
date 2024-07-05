@@ -32,8 +32,8 @@ export class CurrentUser {
     this._me = currentUser;
   }
 
-  public refreshUser(): Observable<Account | undefined> {
-    if (this.isRefreshing) {
+  public refreshUser(override = false): Observable<Account | undefined> {
+    if (this.isRefreshing && !override) {
       return this.currentUser$;
     }
 
