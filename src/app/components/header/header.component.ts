@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:load')
   onLoad() {
-    // @ts-ignore
+    // @ts-expect-error
     google.accounts.id.initialize({
       context: 'signin',
       ux_mode: 'popup',
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
       itp_support: true,
       cancel_on_tap_outside: true,
 
-      // @ts-ignore
+      // @ts-expect-error
       callback: a => {
         this.authService
           .loginWithGoogle(a.credential)
@@ -43,11 +43,11 @@ export class HeaderComponent implements OnInit {
       },
     });
 
-    // @ts-ignore
+    // @ts-expect-error
     google.accounts.id.prompt();
-    // @ts-ignore
+
+    // @ts-expect-error
     google.accounts.id.renderButton(
-      // @ts-ignore
       document.getElementById('google-signin-container'),
       { theme: 'outline', size: 'large', width: '100%' }
     );
