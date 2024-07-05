@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { storageKeys } from '../../core/constants/localstorage';
-import { UserService } from '../../services/user.service';
 import { CurrentUser } from '../../services/current-user.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class AuthCallbackComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
     private readonly currentUserService: CurrentUser
   ) {}
 
@@ -23,8 +21,7 @@ export class AuthCallbackComponent implements OnInit {
       if (token) {
         localStorage.setItem(storageKeys.accessTokenKey, token);
 
-        this.userService.getCurrentUser().subscribe(currentUser => {
-          this.currentUserService.me = currentUser;
+        this.currentUserService.refreshUser().subscribe(() => {
           this.router.navigate(['/']).then(() => {});
         });
       }

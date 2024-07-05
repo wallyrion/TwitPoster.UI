@@ -7,10 +7,17 @@ import { AuthCallbackComponent } from './components/auth-callback/auth-callback.
 import { AboutComponent } from './components/about/about.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { TechnologiesComponent } from './components/technologies/technologies.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: TwitpostsComponent },
   { path: 'auth-callback', component: AuthCallbackComponent },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'about',
     component: AboutComponent,

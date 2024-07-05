@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentUser } from '../../services/current-user.service';
-import { UserService } from '../../services/user.service';
 import { storageKeys } from '../../core/constants/localstorage';
 import {
   apiBaseUrl,
@@ -17,14 +16,11 @@ export class HeaderComponent implements OnInit {
   googleClientId = googleClientId;
   googleSignInUrl = `${apiBaseUrl}/auth/google-sso?redirectTo=${clientAppUrl}/auth-callback`;
 
-  constructor(
-    public readonly currentUser: CurrentUser,
-    private readonly userService: UserService
-  ) {}
+  constructor(public readonly currentUser: CurrentUser) {}
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.currentUser.me = user;
+    this.currentUser.refreshUser().subscribe(user => {
+      console.log('user successfully initialized', user);
     });
   }
 
