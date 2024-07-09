@@ -29,6 +29,10 @@ export class PostService {
     );
   }
 
+  public createPost(body: string) {
+    return this.httpClient.post<Post>(`${this.apiUrl}`, { body });
+  }
+
   public likePost(postId: number) {
     return this.httpClient.put<number>(`${this.apiUrl}/${postId}/like`, {});
   }
