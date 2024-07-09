@@ -1,4 +1,15 @@
 <div class="posts-container">
+  <mat-form-field *ngIf="user.me">
+    <textarea
+      matInput
+      [(ngModel)]="newPostText"
+      placeholder="What are you thinking about today?"
+      rows="3"></textarea>
+    <button mat-icon-button matSuffix (click)="createPost()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </mat-form-field>
+
   <div *ngFor="let post of posts">
     <mat-card class="post-card">
       <app-post [post]="post"></app-post>
