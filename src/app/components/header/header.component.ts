@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare global {
-  const { accounts }: typeof import('google-one-tap');
+  const google: typeof import('google-one-tap');
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:load')
   onLoad() {
-    accounts.id.initialize({
+    google.accounts.id.initialize({
       context: 'signin',
       ux_mode: 'popup',
       client_id: this.googleClientId,
@@ -48,9 +48,9 @@ export class HeaderComponent implements OnInit {
       },
     });
 
-    accounts.id.prompt();
+    google.accounts.id.prompt();
 
-    accounts.id.renderButton(this.googleSignInContainer.nativeElement, {
+    google.accounts.id.renderButton(this.googleSignInContainer.nativeElement, {
       theme: 'outline',
       size: 'large',
     });
