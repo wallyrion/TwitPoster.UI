@@ -7,10 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { Account } from '../../models/auth';
 import { switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-declare global {
-  const google: typeof import('google-one-tap');
-}
+import google from 'google-one-tap';
 
 @Component({
   selector: 'app-header',
