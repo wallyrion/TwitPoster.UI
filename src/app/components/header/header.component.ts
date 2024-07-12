@@ -7,9 +7,10 @@ import { AuthService } from '../../services/auth.service';
 import { Account } from '../../models/auth';
 import { switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { accounts } from 'google-one-tap';
+
 declare global {
-  // @ts-expect-error expected
-  const google: typeof import('google-one-tap');
+  const { accounts }: typeof import('google-one-tap');
 }
 
 @Component({
@@ -32,7 +33,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:load')
   onLoad() {
-    google.accounts.id.initialize({
+    accounts.id.initialize({
       context: 'signin',
       ux_mode: 'popup',
       client_id: this.googleClientId,
@@ -48,9 +49,9 @@ export class HeaderComponent implements OnInit {
       },
     });
 
-    google.accounts.id.prompt();
+    accounts.id.prompt();
 
-    google.accounts.id.renderButton(this.googleSignInContainer.nativeElement, {
+    accounts.id.renderButton(this.googleSignInContainer.nativeElement, {
       theme: 'outline',
       size: 'large',
     });
