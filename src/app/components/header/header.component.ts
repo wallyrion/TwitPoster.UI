@@ -8,7 +8,7 @@ import { Account } from '../../models/auth';
 import { switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 declare global {
-  // @ts-ignore
+  // @ts-expect-error expected
   const google: typeof import('google-one-tap');
 }
 
