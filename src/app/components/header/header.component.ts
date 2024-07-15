@@ -9,7 +9,9 @@ import { switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare global {
-  const google: typeof import('google-one-tap');
+  interface Window {
+    google: typeof import('google-one-tap');
+  }
 }
 
 @Component({
