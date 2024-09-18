@@ -1,10 +1,77 @@
-.spacer {
-  flex: 1 1 auto;
-}
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #673ab7; /* Adjust color as needed */
 
-.profile-img {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
+  .toolbar-title {
+    font-size: 1.5rem;
+    color: #fff; /* Ensures title is visible */
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  .profile-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-left: 16px;
+      color: #fff; /* Ensures links are visible on desktop */
+    }
+  }
+
+  /* Mobile navigation, hidden by default */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 56px; /* Adjust based on toolbar height */
+    left: 0;
+    width: 100%;
+    background-color: #3d2469;
+    z-index: 10;
+
+    a {
+      width: 100%; /* Full width for each link */
+      padding: 16px;
+      text-align: center; /* Center the text */
+      border-bottom: 1px solid #ddd;
+      color: #fff; /* Makes text visible */
+    }
+  }
+
+  .mobile-menu-button {
+    display: none; /* Hide the mobile menu button on desktop */
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none; /* Hide desktop navigation on mobile */
+    }
+
+    .mobile-menu-button {
+      display: inline-block; /* Show mobile menu button on mobile */
+    }
+
+    .mobile-nav {
+      display: flex; /* Display mobile nav in column layout */
+    }
+
+    .profile-img {
+      width: 28px;
+      height: 28px;
+    }
+  }
 }

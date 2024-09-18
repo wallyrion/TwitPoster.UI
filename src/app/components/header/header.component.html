@@ -1,10 +1,26 @@
 <mat-toolbar color="primary">
-  <span>Twitposter</span>
+  <span class="toolbar-title">Twitposter</span>
+
   <div class="spacer"></div>
-  <a mat-button routerLink="/">Home</a>
-  <a mat-button routerLink="/about">About</a>
-  <a mat-button routerLink="/contact">Contact</a>
-  <span>|</span>
+
+  <!-- Desktop Navigation Links -->
+  <div class="desktop-nav">
+    <a mat-button routerLink="/">Home</a>
+    <a mat-button routerLink="/about">About</a>
+    <a mat-button routerLink="/contact">Contact</a>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button mat-icon-button class="mobile-menu-button" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Mobile Navigation Menu -->
+  <nav class="mobile-nav" *ngIf="isMenuOpen">
+    <a mat-button routerLink="/">Home</a>
+    <a mat-button routerLink="/about">About</a>
+    <a mat-button routerLink="/contact">Contact</a>
+  </nav>
 
   <ng-container *ngIf="account">
     <a mat-button routerLink="/profile">Hello, {{ account.firstName }}</a>
@@ -12,7 +28,6 @@
       class="profile-img"
       [src]="account.photoUrl ?? 'assets/images/profile.png'"
       alt="profile-img" />
-
     <button mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

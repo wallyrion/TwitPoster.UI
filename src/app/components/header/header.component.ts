@@ -1,8 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { CurrentUser } from '../../services/current-user.service';
 import { storageKeys } from '../../core/constants/localstorage';
 import { googleClientId } from '../../core/constants/api';
-import { HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Account } from '../../models/auth';
 import { switchMap } from 'rxjs';
@@ -19,7 +24,7 @@ declare global {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('google_signin_container', { static: false })
   googleSignInContainer!: ElementRef;
 
@@ -32,30 +37,15 @@ export class HeaderComponent implements OnInit {
     private readonly snackBar: MatSnackBar
   ) {}
 
-  @HostListener('window:load')
-  onLoad() {
-    google.accounts.id.initialize({
-      context: 'signin',
-      ux_mode: 'popup',
-      client_id: this.googleClientId,
-      auto_select: false,
-      itp_support: true,
-      cancel_on_tap_outside: true,
+  isMenuOpen = false;
 
-      callback: a => {
-        this.authService
-          .loginWithGoogle(a.credential)
-          .pipe(switchMap(() => this.currentUser.refreshUser()))
-          .subscribe();
-      },
-    });
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
-    google.accounts.id.prompt();
-
-    google.accounts.id.renderButton(this.googleSignInContainer.nativeElement, {
-      theme: 'outline',
-      size: 'large',
-    });
+  ngAfterViewInit() {
+    // Initialize Google Sign-In only after the view (and container) is initialized
+    this.initializeGoogleSignIn();
   }
 
   ngOnInit(): void {
@@ -71,6 +61,69 @@ export class HeaderComponent implements OnInit {
         });
       }
     });
+
+    this.initializeGoogleLibrary();
+  }
+
+  initializeGoogleLibrary() {
+    if (typeof google !== 'undefined' && google.accounts) {
+      this.initializeGoogleSignIn();
+    } else {
+      this.loadGoogleScript();
+    }
+  }
+
+  loadGoogleScript() {
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.async = true;
+    script.defer = true;
+
+    script.onload = () => {
+      this.initializeGoogleSignIn();
+    };
+
+    script.onerror = () => {
+      console.error('Failed to load the Google Sign-In library.');
+      this.snackBar.open('Google Sign-In could not be initialized.', 'Close', {
+        duration: 3000,
+      });
+    };
+
+    document.body.appendChild(script);
+  }
+
+  initializeGoogleSignIn() {
+    if (typeof google !== 'undefined' && google.accounts) {
+      google.accounts.id.initialize({
+        context: 'signin',
+        ux_mode: 'popup',
+        client_id: this.googleClientId,
+        auto_select: false,
+        itp_support: true,
+        cancel_on_tap_outside: true,
+
+        callback: a => {
+          this.authService
+            .loginWithGoogle(a.credential)
+            .pipe(switchMap(() => this.currentUser.refreshUser()))
+            .subscribe();
+        },
+      });
+
+      // The view is guaranteed to be initialized now
+      google.accounts.id.renderButton(
+        this.googleSignInContainer.nativeElement,
+        {
+          theme: 'outline',
+          size: 'small',
+        }
+      );
+
+      google.accounts.id.prompt();
+    } else {
+      console.error('Google library failed to load.');
+    }
   }
 
   logout() {
