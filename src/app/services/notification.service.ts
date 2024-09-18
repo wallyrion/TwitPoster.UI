@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HubConnection } from '@microsoft/signalr';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as signalR from '@microsoft/signalr';
-import { apiBaseUrl } from '../core/constants/api';
 import { storageKeys } from '../core/constants/localstorage';
 import { NotificationPayload, NotificationType } from '../models/notifications';
 
