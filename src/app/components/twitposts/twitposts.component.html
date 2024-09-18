@@ -1,17 +1,21 @@
 <div class="posts-container">
-  <mat-form-field *ngIf="user.me">
-    <textarea
-      matInput
-      [(ngModel)]="newPostText"
-      placeholder="What are you thinking about today?"
-      rows="3"></textarea>
-    <button mat-icon-button matSuffix (click)="createPost()">
-      <mat-icon>send</mat-icon>
-    </button>
-  </mat-form-field>
+  <!-- Post creation area for logged-in user -->
+  <mat-card class="new-post-card">
+    <mat-form-field *ngIf="user.me" class="new-post-form">
+      <textarea
+        matInput
+        [(ngModel)]="newPostText"
+        placeholder="What are you thinking about today?"
+        rows="3"></textarea>
+      <button mat-icon-button matSuffix (click)="createPost()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card>
 
-  <div *ngFor="let post of posts">
-    <mat-card class="post-card">
+  <!-- Posts loop -->
+  <div class="posts-list">
+    <mat-card class="post-card" *ngFor="let post of posts">
       <app-post [post]="post"></app-post>
     </mat-card>
   </div>

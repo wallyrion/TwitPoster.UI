@@ -16,7 +16,7 @@ export class NotificationService {
     this._hubConnection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
       .withAutomaticReconnect()
-      .withUrl(`${apiBaseUrl}/notifications`, {
+      .withUrl(`http://localhost:5000/messages`, {
         headers: {},
         accessTokenFactory: () =>
           localStorage.getItem(storageKeys.accessTokenKey) as string,
