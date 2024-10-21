@@ -3,7 +3,7 @@
 
 ### Deployed to github pages at custom domain: 
 
-https://twitposter.xyz/
+https://twitposter.site/
 
 
 ## Development server

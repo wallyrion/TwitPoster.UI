@@ -37,4 +37,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run ng -- deploy --repo="https://github.com/wallyrion/TwitPoster.UI.git" --cname=twitposter.xyz --no-build --name=wallyrion --email=kornienko1296@gmail.com
+          npm run ng -- deploy --repo="https://github.com/wallyrion/TwitPoster.UI.git" --cname=twitposter.site --no-build --name=wallyrion --email=kornienko1296@gmail.com
