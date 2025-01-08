@@ -4,9 +4,10 @@ import { storageKeys } from '../../core/constants/localstorage';
 import { CurrentUser } from '../../services/current-user.service';
 
 @Component({
-  selector: 'app-auth-callback',
-  templateUrl: './auth-callback.component.html',
-  styleUrl: './auth-callback.component.scss',
+    selector: 'app-auth-callback',
+    templateUrl: './auth-callback.component.html',
+    styleUrl: './auth-callback.component.scss',
+    standalone: false
 })
 export class AuthCallbackComponent implements OnInit {
   constructor(

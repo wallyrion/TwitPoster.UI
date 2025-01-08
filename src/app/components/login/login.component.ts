@@ -4,9 +4,10 @@ import { AuthService } from '../../services/auth.service';
 import { CurrentUser } from '../../services/current-user.service';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: false
 })
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;

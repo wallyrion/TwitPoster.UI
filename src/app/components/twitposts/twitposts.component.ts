@@ -4,9 +4,10 @@ import { PostService } from '../../services/post.service';
 import { CurrentUser } from '../../services/current-user.service';
 
 @Component({
-  selector: 'app-twitposts',
-  templateUrl: './twitposts.component.html',
-  styleUrls: ['./twitposts.component.scss'],
+    selector: 'app-twitposts',
+    templateUrl: './twitposts.component.html',
+    styleUrls: ['./twitposts.component.scss'],
+    standalone: false
 })
 export class TwitpostsComponent implements OnInit {
   posts: Post[] = [];
