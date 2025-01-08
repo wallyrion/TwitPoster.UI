@@ -3,9 +3,10 @@ import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+    selector: 'app-post',
+    templateUrl: './post.component.html',
+    styleUrls: ['./post.component.scss'],
+    standalone: false
 })
 export class PostComponent {
   @Input() public post!: Post;

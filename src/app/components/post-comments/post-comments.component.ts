@@ -4,9 +4,10 @@ import { PostComment, PostCommentsResponse } from '../../models/comment';
 import { Observable, switchMap, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-post-comments',
-  templateUrl: './post-comments.component.html',
-  styleUrls: ['./post-comments.component.scss'],
+    selector: 'app-post-comments',
+    templateUrl: './post-comments.component.html',
+    styleUrls: ['./post-comments.component.scss'],
+    standalone: false
 })
 export class PostCommentsComponent implements OnInit {
   private readonly pageSize = 5;
